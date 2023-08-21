@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate QR Code</title>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <header>
+        <h2>Generation And Validation of Exam Card</h2>
+    </header>
+
+    <main class="main-fixed">
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row">
+                <input type="text" name="stu-regis" class="form-control" id="" placeholder="Student Registration Number" required>
+            </div>
+            <div class="row">
+                <input type="text" name="stu-full-name" id="" class="form-control" placeholder="Student Full Name" required>
+            </div>
+            <button class="btn btn-dark">Generate QR Code</button>
+        </form>
+    </main>
+    <main class="qrcode-body">
+        <div class="qr-code text-center">
+            {% for exam in exams %}
+            {% if exam %}
+            <span><b>Student ID: </b> EXN{{exam.id}} |</span>
+            <span><b>Student Registration Number: </b> {{exam.exam_regis}} |</span>
+            <span><b>Student Full Name: </b> {{exam.exam_name}}</span>
+            <br>
+            <div class="qr text-center">
+                <img src="{{ exam.qrcode.code_image.url }}" alt="The qr code IMG">
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </main>
+
+</body>
+</html>
