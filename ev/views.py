@@ -21,7 +21,7 @@ def generate_qr_code(request):
             box_size=10,
             border=4,
         )
-        qr.add_data(f'http://127.0.0.1:8000/validate/{exam_regis}')
+        qr.add_data(f'http://192.168.0.163:8000/validate/{exam_regis}')
         qr.make(fit=True)
 
         img = qr.make_image(fill_color="black", back_color="white")
@@ -44,7 +44,7 @@ def validate_exam(request, exam_regis):
     decoded_objects = decode(Image.open(qr_code_path))
     if decoded_objects:
         decoded_data = decoded_objects[0].data.decode('utf-8')
-        if decoded_data == f'http://127.0.0.1:8000/validate/{exam_regis}':
+        if decoded_data == f'http://192.168.0.163:8000/validate/{exam_regis}':
             return render(request, 'validate_exam.html', {'exam': exam})
         else:
             error_message = "Invalid QR Code"

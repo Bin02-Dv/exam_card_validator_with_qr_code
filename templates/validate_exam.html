@@ -79,6 +79,11 @@
             width: 100%;
         }
     }
+    @media screen and (max-width: 375px) {
+            .main-fixed{
+                height: 100vh;
+            } 
+        }   
     </style>
 </head>
 <body>
@@ -98,7 +103,7 @@
 
         {% if error_message %}
         <div class="qr-code text-center">
-            <h2 style="text-align: center; font-size: 30px;font-family: 'Courier New', Courier, monospace; color: red;">Exam validated Successfully....</h2>
+            <h2 style="text-align: center; font-size: 30px;font-family: 'Courier New', Courier, monospace; color: red;">Exam validated Successfully :)....</h2>
             <br><br>
             <span><b>{{error_message}}</b></span>
 
