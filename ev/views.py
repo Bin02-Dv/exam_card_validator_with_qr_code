@@ -54,3 +54,7 @@ def validate_exam(request, exam_regis):
     return render(request, 'validation_error.html', {'error_message': error_message})
 
 
+def landing(request):
+    return render(request, 'landing.html')
+
+
