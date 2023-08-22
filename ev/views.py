@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.contrib import messages
 
 from django.shortcuts import render, redirect
 from django.core.files.base import ContentFile
@@ -29,6 +30,7 @@ def generate_qr_code(request):
         img.save(image_io, format='PNG')
         qr_code = QRCode.objects.create(exam=exam)
         qr_code.code_image.save(f'{exam_regis}_qr.png', image_io)
+        messages.success(request, f"QR Code for {exam_regis} has been generated successfully...")
     return render(request, 'generate_qr_code.html', {'exams': exams})
 
 
